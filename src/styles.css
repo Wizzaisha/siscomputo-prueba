@@ -1,1 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+@import "primeicons/primeicons.css";
+@plugin "daisyui";
+
+:root {
+  --green: #277c78;
+  --yellow: #f2cdac;
+  --cyan: #82c9d7;
+  --navy: #626070;
+  --red: #c94736;
+}
+
+@theme inline {
+  --color-green: var(--green);
+  --color-yellow: var(--yellow);
+  --color-cyan: var(--cyan);
+  --color-navy: var(--navy);
+  --color-red: var(--red);
+
+  --breakpoint-sm: 0rem;
+  --breakpoint-md: 40rem;
+  --breakpoint-xl: 70rem;
+
+  --font-sans: "Roboto";
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: #ffffff;
+  --color-base-200: #e4ebfa;
+  --color-base-300: #f4f7fd;
+  --color-base-content: #000112;
+  --color-neutral-content: #828fa3;
+  --color-neutral: #828fa3;
+  --color-primary: #635fc7;
+  --color-primary-content: #ffffff;
+  --color-secondary: #f4f7fd;
+  --color-secondary-content: #635fc7;
+  --color-accent: #a8a4ff;
+  --color-accent-content: #ffffff;
+  --color-error: #ea5555;
+  --color-error-content: #ffffff;
+
+  --font-sans: "Plus Jakarta Sans";
+}
+
+.text-preset1 {
+  @apply text-[32px] leading-[120%] tracking-[0] font-bold;
+}
+
+.text-preset2 {
+  @apply text-[20px] leading-[120%] tracking-[0] font-bold;
+}
+
+.text-preset3 {
+  @apply text-base leading-[150%] tracking-[0] font-bold;
+}
+
+.text-preset4-regular {
+  @apply text-[14px] leading-[150%] tracking-[0] font-normal;
+}
+
+.text-preset4-bold {
+  @apply text-[14px] leading-[150%] tracking-[0] font-bold;
+}
+
+.text-preset5-regular {
+  @apply text-[12px] leading-[150%] tracking-[0] font-normal;
+}
+
+.text-preset5-bold {
+  @apply text-[12px] leading-[150%] tracking-[0] font-bold;
+}

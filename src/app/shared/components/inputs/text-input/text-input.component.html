@@ -1,0 +1,53 @@
+<label class="form-control w-full text-preset2">
+  <div class="label" *ngIf="showLabel">
+    <span
+      class="label-text text-2xl"
+      [ngClass]="{
+        'text-error': control.enabled && !control.valid && control.touched
+      }"
+      >{{ labelText }}</span
+    >
+  </div>
+
+  <label
+    class="input flex items-center gap-2 w-full input-sm"
+    [ngClass]="{
+      'input-error border-error': !control!.valid && control.touched,
+      'input-primary border-primary': control!.valid && !control.touched,
+      'mt-2': showLabel
+    }"
+  >
+    <input
+      [id]="id"
+      type="text"
+      [placeholder]="placeholder"
+      [formControl]="control"
+      (blur)="onBlur()"
+      class="grow placeholder-black placeholder:opacity-50"
+      autocomplete="on"
+      [readOnly]="readonly"
+    />
+    <div class="text-start">
+      <small
+        *ngIf="control!.errors?.['required'] && control.touched"
+        class="text-error"
+        >Can't be empty</small
+      >
+      <small
+        *ngIf="control!.errors?.['pattern'] && control.touched"
+        class="text-error"
+        >Value not valid</small
+      >
+      <small
+        *ngIf="control!.errors?.['maxlength'] && control.touched"
+        class="text-error"
+        >Mimimum length not valid</small
+      >
+      <small
+        *ngIf="control!.errors?.['minlength'] && control.touched"
+        class="text-error"
+        >Maximum length not valid</small
+      >
+    </div>
+  </label>
+</label>
