@@ -1,9 +1,9 @@
 @if (users$ | async; as users) {
 
-<form [formGroup]="form">
+<form [formGroup]="form" class="flex flex-col gap-10">
   <h1 class="text-preset1">Users list</h1>
 
-  <p-table [value]="users" class="mt-5">
+  <p-table [value]="users">
     <ng-template pTemplate="caption">
       <div class="w-full flex flex-row justify-between items-center">
         <app-text-input
@@ -12,16 +12,16 @@
           id="search"
           labelText=""
           [showLabel]="false"
-          class="w-full"
+          class="w-1/3"
         ></app-text-input>
       </div>
     </ng-template>
     <ng-template #header>
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>City</th>
-        <th></th>
+        <th class="text-preset2">Name</th>
+        <th class="text-preset2">Email</th>
+        <th class="text-preset2">City</th>
+        <th class="text-preset2"></th>
       </tr>
     </ng-template>
     <ng-template #body let-user>
