@@ -1,0 +1,49 @@
+<form
+  [formGroup]="form"
+  class="flex flex-col justify-center items-center gap-5"
+>
+  <app-text-input
+    [control]="nameField"
+    placeholder="e.g. Carlos"
+    id="name"
+    labelText="Name"
+    [showLabel]="true"
+    class="w-full"
+  ></app-text-input>
+
+  <app-text-input
+    [control]="emailField"
+    type="email"
+    placeholder="e.g. someone@gmail.com"
+    id="email"
+    labelText="Email"
+    [showLabel]="true"
+    class="w-full"
+  ></app-text-input>
+
+  <app-text-input
+    [control]="usernameField"
+    placeholder="e.g. Candy"
+    id="username"
+    labelText="Username"
+    [showLabel]="true"
+    class="w-full"
+  ></app-text-input>
+
+  <app-text-input
+    [control]="websiteField"
+    placeholder="e.g. myportfolio.com"
+    id="website"
+    labelText="Website"
+    [showLabel]="true"
+    class="w-full"
+  ></app-text-input>
+
+  <app-primary-button
+    type="submit"
+    text="Create"
+    toolTipText="Create"
+    (handleClick)="handleSubmitForm()"
+    class="w-full"
+  ></app-primary-button>
+</form>

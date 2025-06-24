@@ -19,13 +19,14 @@
   >
     <input
       [id]="id"
-      [type]="type"
+      type="text"
+      mask="0*"
       [placeholder]="placeholder"
       [formControl]="control"
       (blur)="onBlur()"
       class="grow placeholder-black placeholder:opacity-50"
       autocomplete="on"
-      [readOnly]="readonly"
+      [readOnly]="readOnly"
     />
     <div class="text-start">
       <small

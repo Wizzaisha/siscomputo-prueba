@@ -24,10 +24,18 @@ import { UsersActions } from '../../store/actions.types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 import { AlertsService } from '../../../../shared/services/alerts/alerts.service';
+import { PrimaryButtonComponent } from '../../../../shared/components/buttons/primary-button/primary-button.component';
+import { CreateUserDialogComponent } from '../create-user-dialog/create-user-dialog.component';
 
 @Component({
   selector: 'app-users-table',
-  imports: [TableModule, CommonModule, TextInputComponent, ReactiveFormsModule],
+  imports: [
+    TableModule,
+    CommonModule,
+    TextInputComponent,
+    ReactiveFormsModule,
+    PrimaryButtonComponent,
+  ],
   templateUrl: './users-table.component.html',
   styleUrl: './users-table.component.css',
   providers: [DialogService],
@@ -38,6 +46,8 @@ export class UsersTableComponent implements OnInit, OnDestroy {
   form!: FormGroup;
 
   userDetailsRef: DynamicDialogRef | undefined;
+
+  createUserRef: DynamicDialogRef | undefined;
 
   get searchField(): FormControl {
     return this.form.get('searchValue') as FormControl;
@@ -101,6 +111,26 @@ export class UsersTableComponent implements OnInit, OnDestroy {
         userData: user,
       },
     });
+  }
+
+  handleAddNewUser(): void {
+    this.createUserRef = this.dialogService.open(CreateUserDialogComponent, {
+      modal: true,
+      dismissableMask: true,
+      closable: true,
+      header: 'Create New User',
+      width: '40vw',
+    });
+
+    this.createUserRef.onClose
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((result) => {
+        if (result) {
+          if (result.type === 'saved') {
+            console.log('updateData');
+          }
+        }
+      });
   }
 
   getUserByName(name: string): void {
