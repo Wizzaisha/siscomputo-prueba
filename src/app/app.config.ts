@@ -20,6 +20,7 @@ import {
 import { apiUrlInterceptor } from './shared/interceptors/api-url.interceptor';
 import { reducers } from './shared/store/app.reducer';
 import { metaReducers, rehydrateState } from './shared/store/metaReducers';
+import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,5 +42,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch(), withInterceptors([apiUrlInterceptor])),
+    MessageService,
   ],
 };

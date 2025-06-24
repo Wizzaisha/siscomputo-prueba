@@ -21,9 +21,9 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { UsersActions } from '../../store/actions.types';
-import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserDetailsComponent } from '../user-details/user-details.component';
+import { AlertsService } from '../../../../shared/services/alerts/alerts.service';
 
 @Component({
   selector: 'app-users-table',
@@ -49,8 +49,8 @@ export class UsersTableComponent implements OnInit, OnDestroy {
     private usersService: UsersService,
     private store: Store<AppState>,
     private fb: FormBuilder,
-    private router: Router,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private alertService: AlertsService
   ) {}
 
   ngOnInit(): void {
@@ -109,10 +109,17 @@ export class UsersTableComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: (data) => {
+          if (data.length === 0) {
+            this.alertService.showWarning('Warning', 'Not data found.');
+          }
+
           this.store.dispatch(UsersActions.setUsersData({ data: data }));
         },
         error: (error) => {
-          console.log(error);
+          this.alertService.showError(
+            'Error',
+            'An error has ocurred with the API.'
+          );
         },
       });
   }
@@ -126,7 +133,10 @@ export class UsersTableComponent implements OnInit, OnDestroy {
           this.store.dispatch(UsersActions.setUsersData({ data: data }));
         },
         error: (error) => {
-          console.log(error);
+          this.alertService.showError(
+            'Error',
+            'An error has ocurred with the API.'
+          );
         },
       });
   }

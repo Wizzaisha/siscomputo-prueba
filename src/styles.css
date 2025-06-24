@@ -76,3 +76,7 @@
 .text-preset5-bold {
   @apply text-[12px] leading-[150%] tracking-[0] font-bold;
 }
+
+.p-toast .p-toast-message .p-toast-message-icon {
+  color: inherit;
+}

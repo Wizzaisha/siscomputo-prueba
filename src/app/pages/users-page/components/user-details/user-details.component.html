@@ -3,11 +3,14 @@
 >
   <h2 class="text-preset2">{{ userData.name }}</h2>
 
-  <p><span class="font-bold">Email: </span> {{ userData.email }}</p>
-  <p><span class="font-bold">Phone: </span> {{ userData.phone }}</p>
-  <p><span class="font-bold">Company: </span> {{ userData.company.name }}</p>
-  <p>
-    <span class="font-bold">Addres: </span> {{ userData.address.street }}
-    {{ userData.address.suite }}
-  </p>
+  <div class="grid grid-cols-2 items-start justify-start gap-5">
+    <p><span class="font-bold">Email: </span> {{ userData.email }}</p>
+    <p><span class="font-bold">Phone: </span> {{ userData.phone }}</p>
+    <p><span class="font-bold">Website: </span> {{ userData.website }}</p>
+    <p><span class="font-bold">Company: </span> {{ userData.company.name }}</p>
+    <p>
+      <span class="font-bold">Addres: </span> {{ userData.address.street }}
+      {{ userData.address.suite }}
+    </p>
+  </div>
 </div>

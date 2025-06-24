@@ -5,6 +5,7 @@ import { AppState } from '../../shared/store/app.reducer';
 import { Store } from '@ngrx/store';
 import { UsersActions } from './store/actions.types';
 import { RouterOutlet } from '@angular/router';
+import { AlertsService } from '../../shared/services/alerts/alerts.service';
 
 @Component({
   selector: 'app-users-page',
@@ -17,7 +18,8 @@ export class UsersPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private usersService: UsersService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private alertService: AlertsService
   ) {}
 
   ngOnInit(): void {
@@ -39,10 +41,17 @@ export class UsersPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: (data) => {
+          if (data.length === 0) {
+            this.alertService.showWarning('Warning', 'Not data found.');
+          }
+
           this.store.dispatch(UsersActions.setUsersData({ data: data }));
         },
         error: (error) => {
-          console.log(error);
+          this.alertService.showError(
+            'Error',
+            'An error has ocurred with the API.'
+          );
         },
       });
   }
