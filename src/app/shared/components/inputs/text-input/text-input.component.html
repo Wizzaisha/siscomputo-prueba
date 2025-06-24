@@ -1,7 +1,7 @@
 <label class="form-control w-full text-preset2">
   <div class="label" *ngIf="showLabel">
     <span
-      class="label-text text-2xl"
+      class="label-text"
       [ngClass]="{
         'text-error': control.enabled && !control.valid && control.touched
       }"
@@ -12,8 +12,8 @@
   <label
     class="input flex items-center gap-2 w-full input-sm"
     [ngClass]="{
-      'input-error border-error': !control!.valid && control.touched,
-      'input-primary border-primary': control!.valid && !control.touched,
+      'input-error': !control!.valid && control.touched,
+      'input-primary': control!.valid && !control.touched,
       'mt-2': showLabel
     }"
   >
